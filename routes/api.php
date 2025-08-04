@@ -6,7 +6,3 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
-
-Route::get('/hi/{name}', function ($name) {
-    return response()->json(['message' => 'hi ' . $name]);
-});

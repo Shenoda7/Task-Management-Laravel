@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Task::factory(20)->create();
+        User::factory(2)->unverified()->create();
 
         User::factory(10)->create();
-        User::factory(2)->unverified()->create();
 
     }
 }
