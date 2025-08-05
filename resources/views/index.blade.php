@@ -9,4 +9,10 @@
     @empty
         <div>No Tasks</div>
     @endforelse
+
+    @if($tasks->isNotEmpty())
+        <nav>
+            {{ $tasks->links() }}
+        </nav>
+    @endif
 @endsection
