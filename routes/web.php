@@ -31,27 +31,14 @@ Route::get('/tasks/{task}/edit', function (Task $task) {
 })->name('tasks.edit');
 
 Route::post('/tasks', function (TaskRequest $request) {
-    $data = $request->validated();
+    $task = Task::create($request->validated());
 
-    $task = new Task();
-    $task->title = $data['title'];
-    $task->description = $data['description'];
-    $task->long_description = $data['long_description'];
-
-    $task->save();
-
-    return redirect()->route('tasks.show', ['id' => $task->id])
+    return redirect()->route('tasks.show', ['task' => $task->id])
         ->with('success', 'Task created successfully.');
 })->name('tasks.store');
 
 Route::put('/tasks/{task}', function (Task $task, TaskRequest $request) {
-    $data = $request->validated();
-
-    $task->title = $data['title'];
-    $task->description = $data['description'];
-    $task->long_description = $data['long_description'];
-
-    $task->save();
+    $task->update($request->validated()); /** same as create() but it operates on an already existing model. */
 
     return redirect()->route('tasks.show', ['task' => $task->id])
         ->with('success', 'Task Updated successfully.');
